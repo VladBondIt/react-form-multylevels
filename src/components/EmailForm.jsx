@@ -1,9 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import ButtonNext from "./ButtonNext";
+import Data from '../store/data';
 
 const EmailForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => {
+        Data.handlerEmail(data.email)
+        Data.incTabId()
+    };
 
     return (
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -14,10 +19,10 @@ const EmailForm = () => {
                         required: true,
                         pattern: /^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/gm
                     })} />
-                {errors.email && <span className="form__error">Адрес почты должен быть правельный</span>}
+                {errors.email && <span className="form__error">Адрес почты должен быть правильный</span>}
             </div>
 
-            <button className="button">Далее</button>
+            <ButtonNext />
         </form>
     );
 }

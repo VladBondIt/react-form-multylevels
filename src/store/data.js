@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
 class Data {
-    fio = {}
+    clientInfo = {}
     tabId = 1
 
     constructor() {
@@ -9,14 +9,20 @@ class Data {
     }
 
     handlerFio(items) {
-        this.fio = items
+        this.clientInfo = items
     }
 
     handlerEmail(email) {
-        this.email = email
+        this.clientInfo = {
+            ...this.clientInfo,
+            email
+        }
     }
     incTabId() {
         this.tabId = this.tabId + 1
+    }
+    handlerPassword(password) {
+        this.password = password
     }
 }
 

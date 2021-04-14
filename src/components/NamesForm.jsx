@@ -4,6 +4,7 @@ import Data from '../store/data';
 import { observer } from 'mobx-react-lite'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import ButtonNext from "./ButtonNext";
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -41,17 +42,36 @@ const Steps = observer(() => {
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <div className="form__row">
                 <label htmlFor="" className="form__label">Введите вашу фамилию</label>
-                <input className="form__input" {...register("lastName", { required: true })} />
+                <input className="form__input"
+                    {...register("lastName",
+                        {
+                            required: true,
+                            minLength: 3,
+                            pattern: /^[A-Za-z]+$/i
+                        })
+                    } />
                 {errors.lastName && <span className="form__error">Это поле должно быть заполнено</span>}
             </div>
             <div className="form__row">
                 <label htmlFor="" className="form__label">Введите ваше имя</label>
-                <input className="form__input" {...register("firstName", { required: true })} />
+                <input className="form__input" {...register("firstName",
+                    {
+                        required: true,
+                        minLength: 3,
+                        pattern: /^[A-Za-z]+$/i
+                    })
+                } />
                 {errors.firstName && <span className="form__error">Это поле должно быть заполнено</span>}
             </div>
             <div className="form__row">
                 <label htmlFor="" className="form__label">Введите ваше отчество</label>
-                <input className="form__input" {...register("subName", { required: true })} />
+                <input className="form__input" {...register("subName",
+                    {
+                        required: true,
+                        minLength: 3,
+                        pattern: /^[A-Za-z]+$/i
+                    })
+                } />
                 {errors.subName && <span className="form__error">Это поле должно быть заполнено</span>}
             </div>
             <div className="form__row form__row_birthday">
@@ -68,7 +88,9 @@ const Steps = observer(() => {
                 />
                 {!bithday && <span className="form__error">Это поле должно быть изменено</span>}
             </div>
-            <button className="button">Далее</button>
+
+            <ButtonNext />
+
         </form>
     );
 })

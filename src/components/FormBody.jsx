@@ -4,6 +4,8 @@ import NamesForm from './NamesForm'
 import Data from '../store/data'
 import { observer } from 'mobx-react-lite'
 import EmailForm from './EmailForm'
+import PassForm from './PassForm'
+import FinaleForm from './FinaleForm'
 
 const FormBody = observer(() => {
 
@@ -22,10 +24,11 @@ const FormBody = observer(() => {
             visibleForm = <EmailForm />
             break;
         case 3:
+            visibleForm = <PassForm />
 
             break;
         case 4:
-
+            visibleForm = <FinaleForm />
             break;
 
         default:
